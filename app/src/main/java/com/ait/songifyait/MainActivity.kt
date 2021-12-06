@@ -13,16 +13,15 @@ class MainActivity : AppCompatActivity() {
 
         val Demo = "Did this push work?"
 
-        binding.tvURI.text = getURI(
-            "https://open.spotify.com/track/4laGLspUjGjh1O0AZ2tEQk?si=a22a7892d6344620")
-    }
+        val Pull = "Does this pull work after I pushed it?"
 
 
-    fun getURI(url : String): String {
-        var trackURI = ""
-        for (i in 31..52) {
+        fun getURI(url: String): String {
+            var trackURI = ""
+            for (i in 31..52) {
                 trackURI += url[i]
+            }
+            return trackURI
         }
-        return trackURI
     }
 }
