@@ -8,6 +8,7 @@ import com.ait.songifyait.api.TrackFeatures
 import com.ait.songifyait.data.AudioFeatures
 import com.ait.songifyait.data.Token
 import com.ait.songifyait.databinding.ActivityCompareBinding
+import com.ait.songifyait.dialog.Dialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +23,15 @@ class Compare : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         compareBinding = ActivityCompareBinding.inflate(layoutInflater)
         setContentView(compareBinding.root)
-        getAuthorization()
+
+
+        var firstURI = intent.getStringExtra(Dialog.FIRST_URL).toString()
+        var secondURI = intent.getStringExtra(Dialog.SECOND_URL).toString()
+        getAuthorization(firstURI, secondURI)
+        compareBinding.tvSong2.text = firstURI
+        compareBinding.tvSong1.text = secondURI
+
+
         var Points = 0
 
 //        energy
@@ -63,7 +72,7 @@ class Compare : AppCompatActivity() {
 
     }
 
-    fun getAuthorization() {
+    fun getAuthorization(firstURI : String, secondURI : String) {
         var retrofit = Retrofit.Builder()
             .baseUrl("https://accounts.spotify.com")
             .addConverterFactory(GsonConverterFactory.create())
@@ -77,8 +86,8 @@ class Compare : AppCompatActivity() {
                 var authorizationResult = response.body()
                 val TOKEN = authorizationResult?.access_token.toString()
 
-                compareBinding.tvSong1.text = authorizationResult?.access_token
-                getTrackFeatures(TOKEN)
+                getTrackFeatures(TOKEN, firstURI, secondURI)
+
 
             }
 
@@ -90,16 +99,32 @@ class Compare : AppCompatActivity() {
 
     }
 
-    fun getTrackFeatures(Token : String){
+    fun getTrackFeatures(Token : String, firstURI: String, secondURI: String){
         var retrofit = Retrofit.Builder()
             .baseUrl("https://api.spotify.com/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         var spotifyAPI = retrofit.create(TrackFeatures::class.java)
-        val call = spotifyAPI.getTrackFeatures("Bearer "+Token)
+        val call = spotifyAPI.getTrackFeatures("Bearer "+Token, firstURI)
+        val secondCall = spotifyAPI.getTrackFeatures("Bearer "+Token, secondURI)
 
         call.enqueue(object : Callback<AudioFeatures>{
+
+            override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
+                var spotifyResult = response.body()
+
+                compareBinding.tvSong1.text = "Acousticness: ${spotifyResult?.acousticness}"
+            }
+
+            override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
+                TODO("Not yet implemented")
+
+
+            }
+
+        })
+        secondCall.enqueue(object : Callback<AudioFeatures>{
 
             override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
                 var spotifyResult = response.body()

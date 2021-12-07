@@ -26,13 +26,7 @@ class MainActivity : AppCompatActivity(), Dialog.URLHandler{
         val Pull = "Does this pull work after I pushed it?"
 
 
-        fun getURI(url: String): String {
-            var trackURI = ""
-            for (i in 31..52) {
-                trackURI += url[i]
-            }
-            return trackURI
-        }
+
 
 
 

@@ -52,8 +52,11 @@ class Dialog : DialogFragment() {
         builder.setPositiveButton("Search"){
             dialog, which ->
             //Put the entries as string extras to result activity
-                val firstURL = dialogBinding.etDialogSong1.text.toString()
-                val secondURL = dialogBinding.etDialogSong2.text.toString()
+                var firstURL = dialogBinding.etDialogSong1.text.toString()
+                var secondURL = dialogBinding.etDialogSong2.text.toString()
+
+                firstURL = getURI(firstURL)
+                secondURL = getURI(secondURL)
                 var resultIntent = Intent()
                 resultIntent.putExtra(FIRST_URL, firstURL)
                 resultIntent.putExtra(SECOND_URL, secondURL)
@@ -69,6 +72,14 @@ class Dialog : DialogFragment() {
         }
 
         return builder.create()
+    }
+
+    fun getURI(url: String): String {
+        var trackURI = ""
+        for (i in 31..52) {
+            trackURI += url[i]
+        }
+        return trackURI
     }
 
 }

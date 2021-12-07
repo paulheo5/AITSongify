@@ -14,6 +14,6 @@ import retrofit2.http.Path
 interface TrackFeatures {
     @GET("audio-features/{id}")
     fun getTrackFeatures(@Header("Authorization") token: String?,
-                         @Path("id") id: String = "098ttCNmncrO4YvqWUNMvn"): Call<AudioFeatures>
+                         @Path("id") id: String?): Call<AudioFeatures>
 
 }
