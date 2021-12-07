@@ -2,9 +2,17 @@ package com.ait.songifyait
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.ait.songifyait.api.Authorization
+import com.ait.songifyait.data.Token
 import com.ait.songifyait.data.URL
 import com.ait.songifyait.databinding.ActivityMainBinding
 import com.ait.songifyait.dialog.Dialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity(), Dialog.URLHandler{
     lateinit var binding: ActivityMainBinding
@@ -26,6 +34,9 @@ class MainActivity : AppCompatActivity(), Dialog.URLHandler{
             return trackURI
         }
 
+
+
+
         binding.btnSearch.setOnClickListener {
             Dialog().show(supportFragmentManager, "DIALOG")
         }
@@ -34,4 +45,7 @@ class MainActivity : AppCompatActivity(), Dialog.URLHandler{
     override fun urlCreated(url: URL) {
         TODO("Not yet implemented")
     }
+
+
+
 }
