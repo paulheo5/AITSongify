@@ -3,13 +3,21 @@ package com.ait.songifyait.dialog
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import com.ait.songifyait.Compare
+import com.ait.songifyait.MainActivity
 import com.ait.songifyait.data.URL
 import com.ait.songifyait.databinding.ActivityDialogBinding
 import java.lang.RuntimeException
 
 class Dialog : DialogFragment() {
+    companion object{
+        var FIRST_URL : String = "FIRST_URL"
+        var SECOND_URL : String = "SECOND_URL"
+
+    }
 
 
 
@@ -44,6 +52,14 @@ class Dialog : DialogFragment() {
         builder.setPositiveButton("Search"){
             dialog, which ->
             //Put the entries as string extras to result activity
+                val firstURL = dialogBinding.etDialogSong1.text.toString()
+                val secondURL = dialogBinding.etDialogSong2.text.toString()
+                var resultIntent = Intent()
+                resultIntent.putExtra(FIRST_URL, firstURL)
+                resultIntent.putExtra(SECOND_URL, secondURL)
+
+                resultIntent.setClass((context as MainActivity), Compare::class.java)
+                startActivity(resultIntent)
 
 
         }
