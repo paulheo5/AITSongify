@@ -34,14 +34,6 @@ class Compare : AppCompatActivity() {
 
         var Points = 0
 
-//        energy
-//        danceAbility1
-//        instramentalness1
-//        key
-//        loudless
-//        timesignature1
-//        valence1
-//        tempo1
 //        fun comparision() {
 //            if (abs(danceAbility1 - danceAbility2) < .25) {
 //                Points = +1
@@ -50,7 +42,7 @@ class Compare : AppCompatActivity() {
 //                Points = +1
 //            }
 //
-//            if (abs(instramentalness1 - instramentalness2) < .2) {
+//            if (abs(instrumentalness1 - instrumentalness2) < .2) {
 //                Points = +1
 //            }
 //            if (abs(key1 - key2) < 3) {
@@ -128,8 +120,24 @@ class Compare : AppCompatActivity() {
 
             override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
                 var spotifyResult = response.body()
+                var energy1 = 0
+                var danceAbility1 = 0
+                var instrumentalness1 = 0
+                var key1 = 0
+                var loudness1 = 0
+                var timesignature1 = 0
+                var valence1 = 0
+                var tempo1 = 0
 
                 compareBinding.tvSong2.text = "Acousticness: ${spotifyResult?.acousticness}"
+                energy1=${spotifyResult?.energy}
+                danceAbility1=${spotifyResult?.danceability}
+                instrumentalness1=${spotifyResult?.instrumentalness}
+                key1=${spotifyResult?.key}
+                loudness1=${spotifyResult?.loudness}
+                timesignature1=${spotifyResult?.time_signature}
+                valence1=${spotifyResult?.valence}
+                tempo1= ${spotifyResult?.tempo}
             }
 
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
