@@ -52,8 +52,9 @@
         android:maxHeight="42dp"
         android:scaleType="fitCenter"
         android:src="@drawable/logo_modified"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="164dp" />
+        app:layout_constraintTop_toTopOf="@+id/tvIntro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
