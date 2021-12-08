@@ -19,6 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class Compare : AppCompatActivity() {
 
     lateinit var compareBinding: ActivityCompareBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         compareBinding = ActivityCompareBinding.inflate(layoutInflater)
@@ -128,6 +130,8 @@ class Compare : AppCompatActivity() {
                 var valence1 = 0.0
                 var tempo1 = 0.0
 
+
+
                 compareBinding.tvSong2.text = "Acousticness: ${spotifyResult?.acousticness}"
                 compareBinding.tvSong1.text = "Energy: ${spotifyResult?.energy}"
 
@@ -140,6 +144,7 @@ class Compare : AppCompatActivity() {
 //                tempo1= ${spotifyResult?.tempo}
 
             }
+
 
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
                 TODO("Not yet implemented")

@@ -9,57 +9,62 @@
         android:id="@+id/tvSong1"
         android:layout_width="207dp"
         android:layout_height="72dp"
+        android:layout_marginTop="344dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvSong2"
-        android:layout_width="204dp"
-        android:layout_height="74dp"
+        android:layout_width="201dp"
+        android:layout_height="71dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSong1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/tvHumidity"
+        android:id="@+id/tvExtraInfo2"
         android:layout_width="181dp"
         android:layout_height="95dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCurrentTemp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvExtraInfo1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvExtraInfo1" />
 
     <TextView
         android:id="@+id/tvArtist1"
         android:layout_width="127dp"
         android:layout_height="117dp"
+        android:layout_marginBottom="176dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/ivWeatherIcon"
+        android:id="@+id/ivSong1"
         android:layout_width="139dp"
         android:layout_height="83dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivWeatherIcon2"
+        android:id="@+id/ivSong2"
         android:layout_width="156dp"
         android:layout_height="72dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivWeatherIcon" />
+        app:layout_constraintTop_toTopOf="@+id/ivSong1" />
 
     <TextView
         android:id="@+id/tvArtist2"
         android:layout_width="134dp"
         android:layout_height="120dp"
+        android:layout_marginBottom="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -71,16 +76,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivWeatherIcon" />
+        app:layout_constraintTop_toBottomOf="@+id/ivSong1" />
 
     <TextView
-        android:id="@+id/tvCurrentTemp"
+        android:id="@+id/tvExtraInfo1"
         android:layout_width="136dp"
         android:layout_height="113dp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvArtist2"
-        app:layout_constraintStart_toEndOf="@+id/tvArtist1" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvIntroComparison"
