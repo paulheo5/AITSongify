@@ -6,9 +6,7 @@ import android.util.Log
 import com.ait.songifyait.api.Authorization
 import com.ait.songifyait.api.SongInformation
 import com.ait.songifyait.api.TrackFeatures
-import com.ait.songifyait.data.AudioFeatures
-import com.ait.songifyait.data.Token
-import com.ait.songifyait.data.artistInfo
+import com.ait.songifyait.data.*
 import com.ait.songifyait.databinding.ActivityCompareBinding
 import com.ait.songifyait.dialog.Dialog
 import retrofit2.Call
@@ -21,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class Compare : AppCompatActivity() {
 
     lateinit var compareBinding: ActivityCompareBinding
+
     companion object{
 
     }
@@ -85,6 +84,7 @@ class Compare : AppCompatActivity() {
 
                 getTrackFeatures(TOKEN, firstURI, secondURI)
                 getSongInformation(TOKEN, firstURI, secondURI)
+
 
 
             }
@@ -207,13 +207,63 @@ class Compare : AppCompatActivity() {
             override fun onResponse(call: Call<artistInfo>, response: Response<artistInfo>) {
                 var spotifyResult = response.body()
                 var name = spotifyResult?.name
-
+                compareBinding.tvSong1.text = name
                 Log.d("NAME", "The name is : ${name}")
 
 
             }
 
             override fun onFailure(call: Call<artistInfo>, t: Throwable) {
+                TODO("Not yet implemented")
+
+
+            }
+
+        })
+
+        secondCall.enqueue(object : Callback<artistInfo> {
+
+            override fun onResponse(call: Call<artistInfo>, response: Response<artistInfo>) {
+                var spotifyResult = response.body()
+                var name = spotifyResult?.name
+                compareBinding.tvSong2.text = name
+                Log.d("NAME", "The name is : ${name}")
+
+
+            }
+
+            override fun onFailure(call: Call<artistInfo>, t: Throwable) {
+                TODO("Not yet implemented")
+
+
+            }
+
+        })
+
+
+    }
+    fun getSongImage(Token : String, firstURI: String, secondURI: String) {
+        var retrofit = Retrofit.Builder()
+            .baseUrl("https://api.spotify.com/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        var spotifyAPI = retrofit.create(SongInformation::class.java)
+        val call = spotifyAPI.getSongImage("Bearer " + Token, firstURI)
+        val secondCall = spotifyAPI.getSongInformation("Bearer " + Token, secondURI)
+
+        call.enqueue(object : Callback<Images> {
+
+            override fun onResponse(call: Call<Images>, response: Response<Images>) {
+                var spotifyResult = response.body()
+                var name = spotifyResult?.url
+
+                Log.d("NAME", "The artist name is : ${name}")
+
+
+            }
+
+            override fun onFailure(call: Call<Images>, t: Throwable) {
                 TODO("Not yet implemented")
 
 
