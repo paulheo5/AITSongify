@@ -1,13 +1,16 @@
 package com.ait.songifyait
 
+import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.ait.songifyait.api.Authorization
 import com.ait.songifyait.data.Token
 import com.ait.songifyait.data.URL
 import com.ait.songifyait.databinding.ActivityMainBinding
 import com.ait.songifyait.dialog.Dialog
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,10 +29,12 @@ class MainActivity : AppCompatActivity(), Dialog.URLHandler{
         val Pull = "Does this pull work after I pushed it?"
 
 
-
-
-
-
+        val animationDrawable = constraintLayout.background as AnimationDrawable
+        animationDrawable.apply{
+            setEnterFadeDuration(1000)
+            setExitFadeDuration(2000)
+            start()
+        }
 
         binding.btnSearch.setOnClickListener {
             Dialog().show(supportFragmentManager, "DIALOG")
