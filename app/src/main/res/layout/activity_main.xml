@@ -10,11 +10,12 @@
 
     ##change button color
 
+
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="169dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#009688"
         android:rotationX="17"
         android:rotationY="-13"
@@ -22,25 +23,10 @@
         app:iconTint="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/teal_700"
         tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/tvIntro"
-        android:layout_width="405dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="serif"
-        android:shadowColor="#DAD4D4"
-        android:text="Song Comparison App"
-        android:textColor="#EFB5B5"
-        android:textSize="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_view"
@@ -55,6 +41,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvIntro" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

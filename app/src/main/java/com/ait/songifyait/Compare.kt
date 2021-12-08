@@ -20,9 +20,7 @@ class Compare : AppCompatActivity() {
 
     lateinit var compareBinding: ActivityCompareBinding
 
-    companion object{
 
-    }
     var energy1 = 0.0
     var danceAbility1 = 0.0
     var instrumentalness1 = 0.0
@@ -167,8 +165,7 @@ class Compare : AppCompatActivity() {
                 var spotifyResult = response.body()
 //
 
-                compareBinding.tvSong2.text = "Acousticness: ${spotifyResult?.acousticness}"
-                compareBinding.tvSong1.text = "Energy: ${spotifyResult?.energy}"
+
 
                 energy2 = spotifyResult?.energy!!.toDouble()
                 danceAbility2= spotifyResult?.danceability!!.toDouble()
@@ -181,6 +178,7 @@ class Compare : AppCompatActivity() {
                 comparision()
 
                 compareBinding.tvComparisonValue.text=Percentage
+
             }
 
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
@@ -273,5 +271,7 @@ class Compare : AppCompatActivity() {
 
 
     }
+
+
 
 }
