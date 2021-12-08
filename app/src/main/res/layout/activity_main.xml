@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backroundformain"
     tools:context=".MainActivity">
 
     ##change button color
@@ -14,7 +13,6 @@
         android:layout_width="169dp"
         android:layout_height="72dp"
         android:layout_marginBottom="16dp"
-        android:background=""
         android:backgroundTint="#009688"
         android:rotationX="17"
         android:rotationY="-13"
@@ -41,5 +39,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="231dp"
+        android:layout_height="267dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="42dp"
+        android:maxHeight="42dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="132dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
