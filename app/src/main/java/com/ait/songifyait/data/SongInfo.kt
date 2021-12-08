@@ -4,7 +4,7 @@ package com.ait.songifyait.data
 
 data class Album(val album_type: String?, val total_tracks: Number?, val available_markets: List<String>?, val external_urls: External_urls?, val href: String?, val id: String?, val images: List<Images1569316295>?, val name: String?, val release_date: String?, val release_date_precision: String?, val restrictions: Restrictions?, val type: String?, val uri: String?, val album_group: String?, val artists: List<Artists1126053100>?)
 
-data class Artists100508387(val external_urls: External_urls?, val href: String?, val id: String?, val name: String?, val type: String?, val uri: String?)
+data class artistInfo(val external_urls: External_urls?, val href: String?, val id: String?, val name: String?, val type: String?, val uri: String?)
 
 
 

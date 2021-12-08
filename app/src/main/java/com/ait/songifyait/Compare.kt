@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.ait.songifyait.api.Authorization
+import com.ait.songifyait.api.SongInformation
 import com.ait.songifyait.api.TrackFeatures
 import com.ait.songifyait.data.AudioFeatures
 import com.ait.songifyait.data.Token
+import com.ait.songifyait.data.artistInfo
 import com.ait.songifyait.databinding.ActivityCompareBinding
 import com.ait.songifyait.dialog.Dialog
 import retrofit2.Call
@@ -82,6 +84,7 @@ class Compare : AppCompatActivity() {
                 val TOKEN = authorizationResult?.access_token.toString()
 
                 getTrackFeatures(TOKEN, firstURI, secondURI)
+                getSongInformation(TOKEN, firstURI, secondURI)
 
 
             }
@@ -189,8 +192,36 @@ class Compare : AppCompatActivity() {
         })
     }
 
+    fun getSongInformation(Token : String, firstURI: String, secondURI: String) {
+        var retrofit = Retrofit.Builder()
+            .baseUrl("https://api.spotify.com/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        var spotifyAPI = retrofit.create(SongInformation::class.java)
+        val call = spotifyAPI.getSongInformation("Bearer " + Token, firstURI)
+        val secondCall = spotifyAPI.getSongInformation("Bearer " + Token, secondURI)
+
+        call.enqueue(object : Callback<artistInfo> {
+
+            override fun onResponse(call: Call<artistInfo>, response: Response<artistInfo>) {
+                var spotifyResult = response.body()
+                var name = spotifyResult?.name
+
+                Log.d("NAME", "The name is : ${name}")
 
 
+            }
 
+            override fun onFailure(call: Call<artistInfo>, t: Throwable) {
+                TODO("Not yet implemented")
+
+
+            }
+
+        })
+
+
+    }
 
 }
