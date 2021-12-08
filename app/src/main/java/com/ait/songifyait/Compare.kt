@@ -28,8 +28,7 @@ class Compare : AppCompatActivity() {
         var firstURI = intent.getStringExtra(Dialog.FIRST_URL).toString()
         var secondURI = intent.getStringExtra(Dialog.SECOND_URL).toString()
         getAuthorization(firstURI, secondURI)
-        compareBinding.tvSong2.text = firstURI
-        compareBinding.tvSong1.text = secondURI
+
 
 
         var Points = 0
@@ -106,7 +105,7 @@ class Compare : AppCompatActivity() {
             override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
                 var spotifyResult = response.body()
 
-                compareBinding.tvSong1.text = "Acousticness: ${spotifyResult?.acousticness}"
+                //compareBinding.tvSong1.text = "Acousticness: ${spotifyResult?.acousticness}"
             }
 
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
@@ -120,24 +119,26 @@ class Compare : AppCompatActivity() {
 
             override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
                 var spotifyResult = response.body()
-                var energy1 = 0
-                var danceAbility1 = 0
-                var instrumentalness1 = 0
-                var key1 = 0
-                var loudness1 = 0
-                var timesignature1 = 0
-                var valence1 = 0
-                var tempo1 = 0
+                var energy1 = 0.0
+                var danceAbility1 = 0.0
+                var instrumentalness1 = 0.0
+                var key1 = 0.0
+                var loudness1 = 0.0
+                var timesignature1 = 0.0
+                var valence1 = 0.0
+                var tempo1 = 0.0
 
                 compareBinding.tvSong2.text = "Acousticness: ${spotifyResult?.acousticness}"
-                energy1=${spotifyResult?.energy}
-                danceAbility1=${spotifyResult?.danceability}
-                instrumentalness1=${spotifyResult?.instrumentalness}
-                key1=${spotifyResult?.key}
-                loudness1=${spotifyResult?.loudness}
-                timesignature1=${spotifyResult?.time_signature}
-                valence1=${spotifyResult?.valence}
-                tempo1= ${spotifyResult?.tempo}
+                compareBinding.tvSong1.text = "Energy: ${spotifyResult?.energy}"
+
+//                danceAbility1= spotifyResult?.danceability!!.toInt()
+//                instrumentalness1= spotifyResult?.instrumentalness!!.toInt()
+//                key1=${spotifyResult?.key}
+//                loudness1=${spotifyResult?.loudness}
+//                timesignature1=${spotifyResult?.time_signature}
+//                valence1=${spotifyResult?.valence}
+//                tempo1= ${spotifyResult?.tempo}
+
             }
 
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
