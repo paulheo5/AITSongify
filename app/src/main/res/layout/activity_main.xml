@@ -42,7 +42,7 @@
             android:layout_height="267dp"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="86dp"
+            android:layout_marginEnd="91dp"
             android:adjustViewBounds="true"
             android:background="#00FFFFFF"
             android:maxWidth="42dp"

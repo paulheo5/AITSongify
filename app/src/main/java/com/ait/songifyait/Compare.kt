@@ -2,11 +2,14 @@ package com.ait.songifyait
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.graphics.drawable.AnimationDrawable
 import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -16,6 +19,8 @@ import com.ait.songifyait.api.TrackFeatures
 import com.ait.songifyait.data.*
 import com.ait.songifyait.databinding.ActivityCompareBinding
 import com.ait.songifyait.dialog.Dialog
+import kotlinx.android.synthetic.main.activity_compare.*
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class Compare : AppCompatActivity() {
 
     lateinit var compareBinding: ActivityCompareBinding
+
 
     var energy1 = 0.0
     var danceAbility1 = 0.0
@@ -56,6 +62,7 @@ class Compare : AppCompatActivity() {
         var secondURI = intent.getStringExtra(Dialog.SECOND_URL).toString()
         getAuthorization(firstURI, secondURI)
 
+        val iconView1 = findViewById<ImageView>(R.id.ivIcon1)
         val videoView = findViewById<VideoView>(R.id.videoback)
         val videoUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.loop )
         videoView.setVideoURI(videoUri)
@@ -71,6 +78,11 @@ class Compare : AppCompatActivity() {
         objectAnimator.setRepeatMode(ObjectAnimator.REVERSE)
         objectAnimator.setInterpolator(FastOutSlowInInterpolator())
         objectAnimator.start()
+
+        iconView1.visibility =View.INVISIBLE
+        if(Percentage < 25.toString()){
+            iconView1.visibility = View.VISIBLE
+        }
 
     }
     fun getAuthorization(firstURI : String, secondURI : String) {
@@ -89,8 +101,7 @@ class Compare : AppCompatActivity() {
 
                 getTrackFeatures(TOKEN, firstURI, secondURI)
                 getSongInformation(TOKEN, firstURI, secondURI)
-
-
+                getSongImage(TOKEN, firstURI, secondURI)
 
             }
 
@@ -100,7 +111,7 @@ class Compare : AppCompatActivity() {
         })
     }
 
-    fun SongifyAlgorithm() {
+    fun comparision() {
         if (abs(danceAbility1 - danceAbility2) < .25) {
             Points += 1
         }
@@ -154,7 +165,7 @@ class Compare : AppCompatActivity() {
                 tempo1= spotifyResult?.tempo!!.toDouble()
 
 
-
+                //compareBinding.tvSong1.text = "Acousticness: ${spotifyResult?.acousticness}"
             }
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
                 TODO("Not yet implemented")
@@ -165,8 +176,9 @@ class Compare : AppCompatActivity() {
         secondCall.enqueue(object : Callback<AudioFeatures>{
 
             override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
-                var spotifyResult = response.body()
 
+                var spotifyResult = response.body()
+//
                 energy2 = spotifyResult?.energy!!.toDouble()
                 danceAbility2= spotifyResult?.danceability!!.toDouble()
                 instrumentalness2= spotifyResult?.instrumentalness!!.toDouble()
@@ -175,7 +187,8 @@ class Compare : AppCompatActivity() {
                 timesignature2=spotifyResult?.time_signature!!.toDouble()
                 valence2=spotifyResult?.valence!!.toDouble()
                 tempo2= spotifyResult?.tempo!!.toDouble()
-                SongifyAlgorithm()
+                comparision()
+
 
                 compareBinding.tvComparisonValue.text=Percentage
             }
@@ -204,7 +217,6 @@ class Compare : AppCompatActivity() {
 
                 compareBinding.tvSong1.text = name
                 Log.d("NAME", "The name is : ${name}")
-                Log.d("WHole response", "${spotifyResult}")
 
 
             }
@@ -220,7 +232,7 @@ class Compare : AppCompatActivity() {
                 var spotifyResult = response.body()
                 var name = spotifyResult?.name
                 compareBinding.tvSong2.text = name
-                Log.d("NAME", "The image is : ${spotifyResult}")
+                Log.d("NAME", "The name is : ${name}")
             }
 
             override fun onFailure(call: Call<artistInfo>, t: Throwable) {
@@ -229,6 +241,32 @@ class Compare : AppCompatActivity() {
             }
         })
     }
+    fun getSongImage(Token : String, firstURI: String, secondURI: String) {
+        var retrofit = Retrofit.Builder()
+            .baseUrl("https://api.spotify.com/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
+        var spotifyAPI = retrofit.create(SongInformation::class.java)
+        val call = spotifyAPI.getSongImage("Bearer " + Token, firstURI)
+        val secondCall = spotifyAPI.getSongInformation("Bearer " + Token, secondURI)
+
+        call.enqueue(object : Callback<Images> {
+
+            override fun onResponse(call: Call<Images>, response: Response<Images>) {
+                var spotifyResult = response.body()
+                var name = spotifyResult?.url
+                //compareBinding.tvArtist1.text = name + "Artist name:" +
+                //"Income: " + keys?.getString("income")
+
+                //Log.d("NAME", "The artist name is : ${name}")
+            }
+
+            override fun onFailure(call: Call<Images>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
 
 }
