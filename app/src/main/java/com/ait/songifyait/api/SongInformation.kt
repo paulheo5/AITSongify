@@ -13,7 +13,7 @@ interface SongInformation {
     fun getSongInformation(@Header("Authorization") token: String?,
                          @Path("id") id: String?): Call<artistInfo>
 
-    @GET("tracks/{id}")
+    @GET("artists/{id}")
     fun getArtistName(@Header("Authorization") token : String?,
                       @Path("id") id: String?) : Call<artistName>
 

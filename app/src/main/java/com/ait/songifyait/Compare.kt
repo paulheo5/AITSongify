@@ -29,8 +29,6 @@ class Compare : AppCompatActivity() {
     var timesignature1 = 0.0
     var valence1 = 0.0
     var tempo1 = 0.0
-
-
     var energy2 = 0.0
     var danceAbility2 = 0.0
     var instrumentalness2 = 0.0
@@ -39,12 +37,8 @@ class Compare : AppCompatActivity() {
     var timesignature2 = 0.0
     var valence2 = 0.0
     var tempo2 = 0.0
-
     var Points = 0.0
     var Percentage = ""
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,16 +50,7 @@ class Compare : AppCompatActivity() {
         var secondURI = intent.getStringExtra(Dialog.SECOND_URL).toString()
         getAuthorization(firstURI, secondURI)
 
-
-
-
-
     }
-
-
-
-
-
     fun getAuthorization(firstURI : String, secondURI : String) {
         var retrofit = Retrofit.Builder()
             .baseUrl("https://accounts.spotify.com")
@@ -82,17 +67,14 @@ class Compare : AppCompatActivity() {
 
                 getTrackFeatures(TOKEN, firstURI, secondURI)
                 getSongInformation(TOKEN, firstURI, secondURI)
-
-
+                getSongImage(TOKEN, firstURI, secondURI)
 
             }
 
             override fun onFailure(call: Call<Token>, t: Throwable) {
                 TODO("Not yet implemented")
-
             }
         })
-
     }
 
     fun comparision() {
@@ -151,10 +133,8 @@ class Compare : AppCompatActivity() {
 
                 //compareBinding.tvSong1.text = "Acousticness: ${spotifyResult?.acousticness}"
             }
-
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
                 TODO("Not yet implemented")
-
 
             }
 
@@ -164,9 +144,6 @@ class Compare : AppCompatActivity() {
             override fun onResponse(call: Call<AudioFeatures>, response: Response<AudioFeatures>) {
                 var spotifyResult = response.body()
 //
-
-
-
                 energy2 = spotifyResult?.energy!!.toDouble()
                 danceAbility2= spotifyResult?.danceability!!.toDouble()
                 instrumentalness2= spotifyResult?.instrumentalness!!.toDouble()
@@ -178,13 +155,9 @@ class Compare : AppCompatActivity() {
                 comparision()
 
                 compareBinding.tvComparisonValue.text=Percentage
-
             }
-
             override fun onFailure(call: Call<AudioFeatures>, t: Throwable) {
                 TODO("Not yet implemented")
-
-
             }
 
         })
@@ -205,6 +178,7 @@ class Compare : AppCompatActivity() {
             override fun onResponse(call: Call<artistInfo>, response: Response<artistInfo>) {
                 var spotifyResult = response.body()
                 var name = spotifyResult?.name
+
                 compareBinding.tvSong1.text = name
                 Log.d("NAME", "The name is : ${name}")
 
@@ -213,10 +187,7 @@ class Compare : AppCompatActivity() {
 
             override fun onFailure(call: Call<artistInfo>, t: Throwable) {
                 TODO("Not yet implemented")
-
-
             }
-
         })
 
         secondCall.enqueue(object : Callback<artistInfo> {
@@ -226,19 +197,13 @@ class Compare : AppCompatActivity() {
                 var name = spotifyResult?.name
                 compareBinding.tvSong2.text = name
                 Log.d("NAME", "The name is : ${name}")
-
-
             }
 
             override fun onFailure(call: Call<artistInfo>, t: Throwable) {
                 TODO("Not yet implemented")
 
-
             }
-
         })
-
-
     }
     fun getSongImage(Token : String, firstURI: String, secondURI: String) {
         var retrofit = Retrofit.Builder()
@@ -255,23 +220,17 @@ class Compare : AppCompatActivity() {
             override fun onResponse(call: Call<Images>, response: Response<Images>) {
                 var spotifyResult = response.body()
                 var name = spotifyResult?.url
+                //compareBinding.tvArtist1.text = name + "Artist name:" +
+                //"Income: " + keys?.getString("income")
 
-                Log.d("NAME", "The artist name is : ${name}")
-
-
+                //Log.d("NAME", "The artist name is : ${name}")
             }
 
             override fun onFailure(call: Call<Images>, t: Throwable) {
                 TODO("Not yet implemented")
-
-
             }
 
         })
-
-
     }
-
-
 
 }

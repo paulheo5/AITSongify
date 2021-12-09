@@ -4,23 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <VideoView
+        android:id="@+id/videoback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/tvSong1"
-        android:layout_width="207dp"
+        android:layout_width="196dp"
         android:layout_height="72dp"
-        android:layout_marginTop="344dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/tvSong2"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/tvSong2"
         android:layout_width="201dp"
+
         android:layout_height="71dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSong1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/tvExtraInfo2"
@@ -36,9 +44,12 @@
         android:id="@+id/tvArtist1"
         android:layout_width="127dp"
         android:layout_height="117dp"
-        android:layout_marginBottom="176dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+
+        app:layout_constraintTop_toBottomOf="@+id/tvSong1"
+        app:layout_constraintVertical_bias="0.439" />
 
     <ImageView
         android:id="@+id/ivSong1"
@@ -64,15 +75,20 @@
         android:id="@+id/tvArtist2"
         android:layout_width="134dp"
         android:layout_height="120dp"
-        android:layout_marginBottom="160dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tvSong2"
+        app:layout_constraintVertical_bias="0.487" />
 
     <TextView
         android:id="@+id/tvComparisonValue"
+        android:textSize="32dp"
         android:layout_width="226dp"
         android:layout_height="116dp"
         android:layout_marginTop="80dp"
+        android:fontFamily="@font/bungee_shade"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,15 +100,39 @@
         android:layout_height="113dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
++
 
     <TextView
         android:id="@+id/tvIntroComparison"
         android:layout_width="219dp"
         android:layout_height="40dp"
+        android:fontFamily="@font/biorhyme_bold"
+        android:gravity="center"
         android:text="Your Songs' Similarity:"
         app:layout_constraintBottom_toTopOf="@+id/tvComparisonValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="562dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="332dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
