@@ -1,14 +1,25 @@
 package com.ait.songifyait
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
+import android.graphics.drawable.AnimationDrawable
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.VideoView
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.ait.songifyait.api.Authorization
 import com.ait.songifyait.api.SongInformation
 import com.ait.songifyait.api.TrackFeatures
 import com.ait.songifyait.data.*
 import com.ait.songifyait.databinding.ActivityCompareBinding
 import com.ait.songifyait.dialog.Dialog
+import kotlinx.android.synthetic.main.activity_compare.*
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +60,24 @@ class Compare : AppCompatActivity() {
         var firstURI = intent.getStringExtra(Dialog.FIRST_URL).toString()
         var secondURI = intent.getStringExtra(Dialog.SECOND_URL).toString()
         getAuthorization(firstURI, secondURI)
+
+        val videoView = findViewById<VideoView>(R.id.videoback)
+        val videoUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.loop )
+        videoView.setVideoURI(videoUri)
+        videoView.start()
+        var mp = MediaPlayer.create(this, videoUri)
+        mp.isLooping = true
+
+        val imageView = findViewById<TextView>(R.id.tvComparisonValue)
+        val objectAnimator = ObjectAnimator.ofPropertyValuesHolder(imageView, PropertyValuesHolder.ofFloat("scaleX", 1.1f),
+            PropertyValuesHolder.ofFloat("scaleY", 1.1f))
+        objectAnimator.setDuration(310)
+        objectAnimator.setRepeatCount(ObjectAnimator.INFINITE)
+        objectAnimator.setRepeatMode(ObjectAnimator.REVERSE)
+        objectAnimator.setInterpolator(FastOutSlowInInterpolator())
+        objectAnimator.start()
+
+
 
     }
     fun getAuthorization(firstURI : String, secondURI : String) {
