@@ -8,8 +8,6 @@
     android:background="@drawable/gradient_list"
     tools:context=".MainActivity">
 
-    ##change button color
-
 
     <Button
         android:id="@+id/btnSearch"
@@ -19,7 +17,7 @@
         android:backgroundTint="#009688"
         android:rotationX="17"
         android:rotationY="-13"
-        android:text="Search Song Compatability"
+        android:text="@string/search_song_compatability"
         app:iconTint="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/teal_700"
         tools:visibility="visible" />
+
     <com.skyfishjy.library.RippleBackground
         android:id="@+id/ripple"
         android:layout_width="match_parent"

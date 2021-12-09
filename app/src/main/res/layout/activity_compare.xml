@@ -11,7 +11,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent"
+        />
 
     <TextView
         android:id="@+id/tvSong1"
@@ -52,7 +53,7 @@
         android:layout_width="127dp"
         android:layout_height="117dp"
         android:gravity="center"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
 
@@ -84,7 +85,7 @@
         android:layout_width="134dp"
         android:layout_height="120dp"
         android:gravity="center"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/tvSong2"
@@ -98,7 +99,7 @@
         android:fontFamily="@font/bungee_shade"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:textSize="32dp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +111,7 @@
         android:layout_height="113dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-+
+
 
     <TextView
         android:id="@+id/tvIntroComparison"
@@ -118,8 +119,8 @@
         android:layout_height="40dp"
         android:fontFamily="@font/biorhyme_bold"
         android:gravity="center"
-        android:text="Similarity:"
-        android:textSize="25dp"
+        android:text="@string/similarity"
+        android:textSize="25sp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/tvComparisonValue"
         app:layout_constraintEnd_toEndOf="parent"
